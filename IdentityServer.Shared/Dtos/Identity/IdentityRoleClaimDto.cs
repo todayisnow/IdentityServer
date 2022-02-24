@@ -4,7 +4,7 @@ namespace IdentityServer.Shared.Dtos.Identity
 {
     public class IdentityRoleClaimDto : RoleClaimDto<string>
     {
-
+        
     }
 }
 

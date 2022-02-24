@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServer.Admin.Entity
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServer.Shared", "IdentityServer.Shared\IdentityServer.Shared.csproj", "{921F34A8-EB13-460D-9ED1-37BEC87F5587}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServer.STS.Identity", "IdentityServer.STS.Identity\IdentityServer.STS.Identity.csproj", "{BBEEA949-E709-404C-8F48-EB3F5B4449F7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServer.STS.Identity", "MyIdentity.STS.Identity\IdentityServer.STS.Identity.csproj", "{BBEEA949-E709-404C-8F48-EB3F5B4449F7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

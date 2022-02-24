@@ -4,6 +4,8 @@
 // Original file: https://github.com/IdentityServer/IdentityServer4.Quickstart.UI
 // Modified by Jan Škoruba
 
+using System;
+
 namespace IdentityServer.STS.Identity.Configuration
 {
     public class AccountOptions

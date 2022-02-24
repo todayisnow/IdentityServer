@@ -294,7 +294,7 @@ namespace IdentityServer.Admin.Api.Helpers
                             .AddSqlServer(identityDbConnectionString, name: "IdentityDb",
                                 healthQuery: $"SELECT TOP 1 * FROM dbo.[{identityTableName}]")
                             .AddSqlServer(logDbConnectionString, name: "LogDb",
-                                healthQuery: $"SELECT TOP 1 * FROM al.[{logTableName}]")
+                                healthQuery: $"SELECT TOP 1 * FROM dbo.[{logTableName}]")
                             .AddSqlServer(auditLogDbConnectionString, name: "AuditLogDb",
                                 healthQuery: $"SELECT TOP 1 * FROM dbo.[{auditLogTableName}]")
                             .AddSqlServer(dataProtectionDbConnectionString, name: "DataProtectionDb",

@@ -1,13 +1,20 @@
-﻿using IdentityServer.Admin.EntityFramework.Shared.DbContexts;
-using IdentityServer.Admin.EntityFramework.Shared.Entities.Identity;
-using IdentityServer.Admin.EntityFramework.Shared.Helpers;
+﻿using System;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
 using Serilog;
 using Skoruba.IdentityServer4.Admin.EntityFramework.Configuration.Configuration;
+using IdentityServer.Admin.EntityFramework.Shared.DbContexts;
+using IdentityServer.Admin.EntityFramework.Shared.Entities.Identity;
+using IdentityServer.Admin.EntityFramework.Shared.Helpers;
 using Skoruba.IdentityServer4.Shared.Configuration.Helpers;
 
 namespace IdentityServer.Admin
 {
-    public class Program
+	public class Program
     {
         private const string SeedArgs = "/seed";
         private const string MigrateOnlyArgs = "/migrateonly";
@@ -30,8 +37,7 @@ namespace IdentityServer.Admin
                 if (args.Any(x => x == MigrateOnlyArgs))
                 {
                     await host.StopAsync();
-                    if (!migrationComplete)
-                    {
+                    if (!migrationComplete) {
                         Environment.ExitCode = -1;
                     }
 

@@ -1,27 +1,36 @@
-﻿using IdentityServer.STS.Identity.Configuration;
-using IdentityServer.STS.Identity.Configuration.ApplicationParts;
-using IdentityServer.STS.Identity.Configuration.Constants;
-using IdentityServer.STS.Identity.Configuration.Interfaces;
-using IdentityServer.STS.Identity.Helpers.Localization;
-using IdentityServer4.Configuration;
+﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
 using IdentityServer4.EntityFramework.Storage;
 using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.DataProtection.EntityFrameworkCore;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Options;
+using IdentityServer.STS.Identity.Configuration;
+using IdentityServer.STS.Identity.Configuration.ApplicationParts;
+using IdentityServer.STS.Identity.Configuration.Constants;
+using IdentityServer.STS.Identity.Configuration.Interfaces;
+using IdentityServer.STS.Identity.Helpers.Localization;
+using System.Linq;
+using IdentityServer4.Configuration;
+using Skoruba.IdentityServer4.Admin.EntityFramework.Interfaces;
+using Skoruba.IdentityServer4.Admin.EntityFramework.Helpers;
+using Microsoft.AspNetCore.DataProtection.EntityFrameworkCore;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Identity.Web;
 using Skoruba.IdentityServer4.Admin.EntityFramework.Configuration.Configuration;
+using Skoruba.IdentityServer4.Admin.EntityFramework.Configuration.MySql;
+using Skoruba.IdentityServer4.Admin.EntityFramework.Configuration.PostgreSQL;
 using Skoruba.IdentityServer4.Admin.EntityFramework.Configuration.SqlServer;
-using Skoruba.IdentityServer4.Admin.EntityFramework.Helpers;
-using Skoruba.IdentityServer4.Admin.EntityFramework.Interfaces;
 using Skoruba.IdentityServer4.Shared.Configuration.Authentication;
 using Skoruba.IdentityServer4.Shared.Configuration.Configuration.Identity;
-using System.Globalization;
 
 namespace IdentityServer.STS.Identity.Helpers
 {
@@ -197,7 +206,12 @@ namespace IdentityServer.STS.Identity.Helpers
                 case DatabaseProviderType.SqlServer:
                     services.RegisterSqlServerDbContexts<TIdentityDbContext, TConfigurationDbContext, TPersistedGrantDbContext, TDataProtectionDbContext>(identityConnectionString, configurationConnectionString, persistedGrantsConnectionString, dataProtectionConnectionString);
                     break;
-
+                case DatabaseProviderType.PostgreSQL:
+                    services.RegisterNpgSqlDbContexts<TIdentityDbContext, TConfigurationDbContext, TPersistedGrantDbContext, TDataProtectionDbContext>(identityConnectionString, configurationConnectionString, persistedGrantsConnectionString, dataProtectionConnectionString);
+                    break;
+                case DatabaseProviderType.MySql:
+                    services.RegisterMySqlDbContexts<TIdentityDbContext, TConfigurationDbContext, TPersistedGrantDbContext, TDataProtectionDbContext>(identityConnectionString, configurationConnectionString, persistedGrantsConnectionString, dataProtectionConnectionString);
+                    break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(databaseProvider.ProviderType), $@"The value needs to be one of {string.Join(", ", Enum.GetNames(typeof(DatabaseProviderType)))}.");
             }
@@ -384,7 +398,7 @@ namespace IdentityServer.STS.Identity.Helpers
                     options.Instance = externalProviderConfiguration.AzureInstance;
                     options.Domain = externalProviderConfiguration.AzureDomain;
                     options.CallbackPath = externalProviderConfiguration.AzureAdCallbackPath;
-                }, cookieScheme: null);
+                },  cookieScheme: null);
             }
         }
 

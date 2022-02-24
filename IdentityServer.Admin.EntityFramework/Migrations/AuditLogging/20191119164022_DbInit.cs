@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace IdentityServer.Admin.EntityFramework.SqlServer.Migrations.AuditLogging
 {

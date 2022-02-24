@@ -21,10 +21,14 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.WebUtilities;
+using Microsoft.Extensions.Logging;
 using Skoruba.IdentityServer4.Shared.Configuration.Configuration.Identity;
+using System;
+using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Text.Encodings.Web;
+using System.Threading.Tasks;
 
 namespace IdentityServer.STS.Identity.Controllers
 {
