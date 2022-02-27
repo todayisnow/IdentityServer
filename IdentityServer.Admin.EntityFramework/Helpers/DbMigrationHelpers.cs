@@ -1,7 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
-using IdentityModel;
+﻿using IdentityModel;
 using IdentityServer4.EntityFramework.Mappers;
 using IdentityServer4.Models;
 using Microsoft.AspNetCore.DataProtection.EntityFrameworkCore;
@@ -16,7 +13,7 @@ using Skoruba.IdentityServer4.Admin.EntityFramework.Interfaces;
 
 namespace IdentityServer.Admin.EntityFramework.Shared.Helpers
 {
-	public static class DbMigrationHelpers
+    public static class DbMigrationHelpers
     {
         /// <summary>
         /// Generate migrations before running this method, you can use these steps bellow:
@@ -56,7 +53,7 @@ namespace IdentityServer.Admin.EntityFramework.Shared.Helpers
                     var seedComplete = await EnsureSeedDataAsync<TIdentityServerDbContext, TUser, TRole>(services);
                     return migrationComplete && seedComplete;
                 }
-                
+
             }
             return migrationComplete;
         }
@@ -168,7 +165,8 @@ namespace IdentityServer.Admin.EntityFramework.Shared.Helpers
                 {
                     UserName = user.Username,
                     Email = user.Email,
-                    EmailConfirmed = true
+                    EmailConfirmed = true,
+
                 };
 
                 var userByUserName = await userManager.FindByNameAsync(user.Username);

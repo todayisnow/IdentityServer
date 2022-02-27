@@ -1,9 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
+﻿using IdentityServer.STS.Identity.Configuration;
+using IdentityServer.STS.Identity.Configuration.ApplicationParts;
+using IdentityServer.STS.Identity.Configuration.Constants;
+using IdentityServer.STS.Identity.Configuration.Interfaces;
+using IdentityServer.STS.Identity.Helpers.Localization;
+using IdentityServer4.Configuration;
 using IdentityServer4.EntityFramework.Storage;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.DataProtection.EntityFrameworkCore;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Localization;
@@ -13,24 +18,19 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Options;
-using IdentityServer.STS.Identity.Configuration;
-using IdentityServer.STS.Identity.Configuration.ApplicationParts;
-using IdentityServer.STS.Identity.Configuration.Constants;
-using IdentityServer.STS.Identity.Configuration.Interfaces;
-using IdentityServer.STS.Identity.Helpers.Localization;
-using System.Linq;
-using IdentityServer4.Configuration;
-using Skoruba.IdentityServer4.Admin.EntityFramework.Interfaces;
-using Skoruba.IdentityServer4.Admin.EntityFramework.Helpers;
-using Microsoft.AspNetCore.DataProtection.EntityFrameworkCore;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Identity.Web;
 using Skoruba.IdentityServer4.Admin.EntityFramework.Configuration.Configuration;
 using Skoruba.IdentityServer4.Admin.EntityFramework.Configuration.MySql;
 using Skoruba.IdentityServer4.Admin.EntityFramework.Configuration.PostgreSQL;
 using Skoruba.IdentityServer4.Admin.EntityFramework.Configuration.SqlServer;
+using Skoruba.IdentityServer4.Admin.EntityFramework.Helpers;
+using Skoruba.IdentityServer4.Admin.EntityFramework.Interfaces;
 using Skoruba.IdentityServer4.Shared.Configuration.Authentication;
 using Skoruba.IdentityServer4.Shared.Configuration.Configuration.Identity;
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
 
 namespace IdentityServer.STS.Identity.Helpers
 {
@@ -363,6 +363,7 @@ namespace IdentityServer.STS.Identity.Helpers
             builder.AddCustomSigningCredential(configuration);
             builder.AddCustomValidationKey(configuration);
             builder.AddExtensionGrantValidator<DelegationGrantValidator>();
+            builder.AddProfileService<ProfileService>();
 
             return builder;
         }
@@ -398,7 +399,7 @@ namespace IdentityServer.STS.Identity.Helpers
                     options.Instance = externalProviderConfiguration.AzureInstance;
                     options.Domain = externalProviderConfiguration.AzureDomain;
                     options.CallbackPath = externalProviderConfiguration.AzureAdCallbackPath;
-                },  cookieScheme: null);
+                }, cookieScheme: null);
             }
         }
 
