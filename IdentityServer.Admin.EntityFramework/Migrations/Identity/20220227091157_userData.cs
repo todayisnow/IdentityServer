@@ -12,14 +12,14 @@ namespace IdentityServer.Admin.EntityFramework.Migrations.Identity
                 name: "EmployeeId",
                 table: "Users",
                 type: "nvarchar(max)",
-                nullable: false,
+                nullable: true,
                 defaultValue: "");
 
             migrationBuilder.AddColumn<bool>(
                 name: "IsEnabled",
                 table: "Users",
                 type: "bit",
-                nullable: false,
+                nullable: true,
                 defaultValue: false);
         }
 
