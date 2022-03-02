@@ -70,7 +70,23 @@
                     "role",
                     "name"
                 ]
-            }
+            },
+			{
+        "Name": "basketAPI",
+        "DisplayName": "basket API"
+      },
+      {
+        "Name": "catalogAPI",
+        "DisplayName": "catalog API"
+      },
+      {
+        "Name": "orderAPI",
+        "DisplayName": "order API"
+      },
+      {
+        "Name": "OcelotApiGw",
+        "DisplayName": "Ocelot Api Gw"
+      }
         ],
         "ApiResources": [
             {
@@ -128,7 +144,44 @@
                 "AllowedCorsOrigins": [
                     "https://admin-api.skoruba.local"
                 ]
-            }
+            },
+			{
+  "ClientId": "aspnetRunBasics_client",
+  "ClientName": "AspnetRun Basics Razor App",
+  "AllowedGrantTypes": [
+    "hybrid"
+  ],
+  "RequirePkce": false,
+  "AllowRememberConsent": false,
+  "RedirectUris": [
+
+    "https://localhost:5006/signin-oidc"
+
+  ],
+  "PostLogoutRedirectUris": [
+    "https://localhost:5006/signout-callback-oidc"
+  ],
+  "ClientSecrets": [
+    {
+      "Value": "secret"
+    }
+  ],
+  "AllowedScopes": [
+    "openId",
+    "profile",
+    "address",
+    "email",
+
+    "basketAPI",
+    "catalogAPI",
+    "orderAPI",
+    "OcelotApiGw",
+    "roles"
+  ],
+  "AllowOfflineAccess": true,
+  "AlwaysIncludeUserClaimsInIdToken": true,
+  "UpdateAccessTokenClaimsOnRefresh": true
+}
         ]
     }
 }
