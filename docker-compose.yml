@@ -147,6 +147,6 @@ networks:
 #copy $env:LOCALAPPDATA\mkcert\rootCA.pem ./cacerts.pem
 #copy $env:LOCALAPPDATA\mkcert\rootCA.pem ./cacerts.crt
 
-#cd shared/nginx/certs
+
 #mkcert -cert-file skoruba.local.crt -key-file skoruba.local.key skoruba.local *.skoruba.local
 #mkcert -pkcs12 skoruba.local.pfx skoruba.local *.skoruba.local

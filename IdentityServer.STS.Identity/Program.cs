@@ -1,10 +1,12 @@
-﻿using System;
-using System.IO;
+﻿using Elastic.Apm.SerilogEnricher;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Serilog;
+using Serilog.Sinks.Elasticsearch;
 using Skoruba.IdentityServer4.Shared.Configuration.Helpers;
+using System;
+using System.IO;
 
 namespace IdentityServer.STS.Identity
 {
@@ -89,9 +91,24 @@ namespace IdentityServer.STS.Identity
                 })
                 .UseSerilog((hostContext, loggerConfig) =>
                 {
+                    var elasticUri = hostContext.Configuration.GetValue<string>("ElasticConfiguration:Uri");
                     loggerConfig
                         .ReadFrom.Configuration(hostContext.Configuration)
-                        .Enrich.WithProperty("ApplicationName", hostContext.HostingEnvironment.ApplicationName);
+                        .Enrich.WithProperty("Application", hostContext.HostingEnvironment.ApplicationName)
+                        .Enrich.FromLogContext()
+                    .Enrich.WithMachineName()
+                    .WriteTo.Debug()
+                    .Enrich.WithElasticApmCorrelationInfo()//to connect logs with apm
+                    .WriteTo.Elasticsearch(
+                        new ElasticsearchSinkOptions(new Uri(elasticUri))
+                        {
+                            IndexFormat = $"applogs-{hostContext.HostingEnvironment.ApplicationName?.ToLower().Replace(".", "-")}-{hostContext.HostingEnvironment.EnvironmentName?.ToLower().Replace(".", "-")}-{DateTime.UtcNow:yyyy-MM}",
+                            AutoRegisterTemplate = true,
+                            NumberOfShards = 2,
+                            NumberOfReplicas = 1
+                        })
+                    .Enrich.WithProperty("Environment", hostContext.HostingEnvironment.EnvironmentName);
+
                 });
     }
 }

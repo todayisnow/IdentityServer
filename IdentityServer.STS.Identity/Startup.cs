@@ -1,18 +1,19 @@
-﻿using HealthChecks.UI.Client;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Diagnostics.HealthChecks;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
+﻿using Elastic.Apm.NetCoreAll;
+using HealthChecks.UI.Client;
 using IdentityServer.Admin.EntityFramework.Shared.DbContexts;
 using IdentityServer.Admin.EntityFramework.Shared.Entities.Identity;
 using IdentityServer.STS.Identity.Configuration;
 using IdentityServer.STS.Identity.Configuration.Constants;
 using IdentityServer.STS.Identity.Configuration.Interfaces;
 using IdentityServer.STS.Identity.Helpers;
-using System;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Skoruba.IdentityServer4.Shared.Configuration.Helpers;
+using System;
 
 namespace IdentityServer.STS.Identity
 {
@@ -29,6 +30,7 @@ namespace IdentityServer.STS.Identity
 
         public void ConfigureServices(IServiceCollection services)
         {
+
             var rootConfiguration = CreateRootConfiguration();
             services.AddSingleton(rootConfiguration);
             // Register DbContexts for IdentityServer and Identity
@@ -59,6 +61,7 @@ namespace IdentityServer.STS.Identity
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseAllElasticApm(Configuration);
             app.UseCookiePolicy();
 
             if (env.IsDevelopment())
@@ -69,7 +72,7 @@ namespace IdentityServer.STS.Identity
             {
                 app.UseHsts();
             }
-
+            //app.UseHsts();
             app.UsePathBase(Configuration.GetValue<string>("BasePath"));
 
             app.UseStaticFiles();
