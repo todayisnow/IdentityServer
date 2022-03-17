@@ -4,7 +4,7 @@
             "Default": "Error",
           "Override": {
             "Skoruba": "Information",
-            "ElasticApm": "Information"
+            "ElasticApm": "Error"
 
           }
         },
