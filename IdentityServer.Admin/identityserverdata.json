@@ -72,6 +72,14 @@
         ]
       },
       {
+        "Name": "myOrderAPI.read",
+        "DisplayName": "My Order API Read"
+      },
+      {
+        "Name": "myOrderApi.write",
+        "DisplayName": "My Order API Write"
+      },
+      {
         "Name": "basketAPI",
         "DisplayName": "basket API"
       },
@@ -93,6 +101,18 @@
         "Name": "skoruba_identity_admin_api",
         "Scopes": [
           "skoruba_identity_admin_api"
+        ]
+      },
+      {
+        "Name": "myOrderApi",
+        "DisplayName": "My Order API",
+        "Description ": "Allow the application to access Order Api on your behalf",
+        "UserClaims": [
+          "role"
+        ],
+        "Scopes": [
+          "myOrderApi.write",
+          "myOrderAPI.read"
         ]
       }
     ],
@@ -144,6 +164,25 @@
         "AllowedCorsOrigins": [
           "https://localhost:44302"
         ]
+      },
+      {
+        "ClientId": "myOrderAPIClient",
+        "ClientName": "Order Api Client",
+        "AllowedGrantTypes": [
+          "client_credentials"
+        ],
+        "RequirePkce": false,
+        "AllowRememberConsent": false,
+        "ClientSecrets": [
+          {
+            "Value": "secret"
+          }
+        ],
+        "AllowedScopes": [
+          "myOrderAPI.read"
+
+        ]
+
       },
       {
         "ClientId": "aspnetRunBasics_client",
