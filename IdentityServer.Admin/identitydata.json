@@ -2,16 +2,16 @@
   "IdentityData": {
     "Roles": [
       {
-        "Name": "SkorubaIdentityAdminAdministrator"
+        "Name": "MofaIdentityAdminAdministrator"
       }
     ],
     "Users": [
       {
         "Username": "admin",
         "Password": "Pa$$word123",
-        "Email": "admin@skoruba.com",
+        "Email": "eaboelsaoud@mofa.gov.sa",
         "Roles": [
-          "SkorubaIdentityAdminAdministrator"
+          "MofaIdentityAdminAdministrator"
         ],
         "Claims": [
           {

@@ -1,4 +1,5 @@
 ﻿using IdentityModel;
+using IdentityServer.Admin.EntityFramework.Shared.Entities.Identity;
 using IdentityServer4.EntityFramework.Mappers;
 using IdentityServer4.Models;
 using Microsoft.AspNetCore.DataProtection.EntityFrameworkCore;
@@ -33,7 +34,7 @@ namespace IdentityServer.Admin.EntityFramework.Shared.Helpers
             where TLogDbContext : DbContext, IAdminLogDbContext
             where TAuditLogDbContext : DbContext, IAuditLoggingDbContext<AuditLog>
             where TDataProtectionDbContext : DbContext, IDataProtectionKeyContext
-            where TUser : IdentityUser, new()
+            where TUser : UserIdentity, new()
             where TRole : IdentityRole, new()
         {
             bool migrationComplete = false;
@@ -111,7 +112,7 @@ namespace IdentityServer.Admin.EntityFramework.Shared.Helpers
 
         public static async Task<bool> EnsureSeedDataAsync<TIdentityServerDbContext, TUser, TRole>(IServiceProvider serviceProvider)
         where TIdentityServerDbContext : DbContext, IAdminConfigurationDbContext
-        where TUser : IdentityUser, new()
+        where TUser : UserIdentity, new()
         where TRole : IdentityRole, new()
         {
             using (var scope = serviceProvider.GetRequiredService<IServiceScopeFactory>().CreateScope())
@@ -133,7 +134,7 @@ namespace IdentityServer.Admin.EntityFramework.Shared.Helpers
         /// </summary>
         private static async Task EnsureSeedIdentityData<TUser, TRole>(UserManager<TUser> userManager,
             RoleManager<TRole> roleManager, IdentityData identityDataConfiguration)
-            where TUser : IdentityUser, new()
+            where TUser : UserIdentity, new()
             where TRole : IdentityRole, new()
         {
             // adding roles from seed
@@ -166,6 +167,7 @@ namespace IdentityServer.Admin.EntityFramework.Shared.Helpers
                     UserName = user.Username,
                     Email = user.Email,
                     EmailConfirmed = true,
+                    EmployeeId = "200200"
 
                 };
 
