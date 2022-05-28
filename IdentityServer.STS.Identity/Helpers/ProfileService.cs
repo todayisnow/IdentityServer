@@ -31,6 +31,7 @@ namespace IdentityServer.STS.Identity.Helpers
 
             // Add custom claims in token here based on user properties or any other source
             claims.Add(new Claim("employee_id", user.EmployeeId ?? string.Empty));
+            claims.Add(new Claim("user_name", user.UserName ?? string.Empty));
 
             context.IssuedClaims = claims;
         }
