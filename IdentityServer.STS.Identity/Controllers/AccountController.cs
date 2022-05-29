@@ -245,8 +245,9 @@ namespace IdentityServer.STS.Identity.Controllers
                 // this triggers a redirect to the external provider for sign-out
                 return SignOut(new AuthenticationProperties { RedirectUri = url }, vm.ExternalAuthenticationScheme);
             }
-
-            return View("LoggedOut", vm);
+            if (string.IsNullOrEmpty(vm.PostLogoutRedirectUri))
+                return View("LoggedOut", vm);
+            return Redirect(vm.PostLogoutRedirectUri);
         }
 
         [HttpGet]
