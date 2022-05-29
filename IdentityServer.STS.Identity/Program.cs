@@ -106,6 +106,13 @@ namespace IdentityServer.STS.Identity
                             AutoRegisterTemplate = true,
                             NumberOfShards = 2,
                             NumberOfReplicas = 1
+                        }).WriteTo.Elasticsearch(
+                        new ElasticsearchSinkOptions(new Uri(elasticUri))
+                        {
+                            IndexFormat = $"applogs-{hostContext.HostingEnvironment.ApplicationName?.ToLower().Replace(".", "-")}-{hostContext.HostingEnvironment.EnvironmentName?.ToLower().Replace(".", "-")}-{DateTime.UtcNow:yyyy-MM}",
+                            AutoRegisterTemplate = true,
+                            NumberOfShards = 2,
+                            NumberOfReplicas = 1
                         })
                     .Enrich.WithProperty("Environment", hostContext.HostingEnvironment.EnvironmentName);
 
