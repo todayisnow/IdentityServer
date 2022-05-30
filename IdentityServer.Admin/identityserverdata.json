@@ -112,7 +112,8 @@
         ],
         "Scopes": [
           "myOrderApi.write",
-          "myOrderAPI.read"
+          "myOrderAPI.read",
+          "orderAPI"
         ]
       }
     ],
