@@ -121,7 +121,7 @@
       {
         "ClientId": "mofa_identity_admin",
         "ClientName": "mofa_identity_admin",
-        "ClientUri": "https://localhost:44303",
+        "ClientUri": "https://admin.mofa.local",
         "AllowedGrantTypes": [
           "authorization_code"
         ],
@@ -132,14 +132,14 @@
           }
         ],
         "RedirectUris": [
-          "https://localhost:44303/signin-oidc"
+          "https://admin.mofa.local/signin-oidc"
         ],
-        "FrontChannelLogoutUri": "https://localhost:44303/signout-oidc",
+        "FrontChannelLogoutUri": "https://admin.mofa.local/signout-oidc",
         "PostLogoutRedirectUris": [
-          "https://localhost:44303/signout-callback-oidc"
+          "https://admin.mofa.local/signout-callback-oidc"
         ],
         "AllowedCorsOrigins": [
-          "https://localhost:44303"
+          "https://admin.mofa.local"
         ],
         "AllowedScopes": [
           "openid",
@@ -157,13 +157,13 @@
         "RequireClientSecret": false,
         "RequirePkce": true,
         "RedirectUris": [
-          "https://localhost:44302/swagger/oauth2-redirect.html"
+          "https://admin-api.mofa.local/swagger/oauth2-redirect.html"
         ],
         "AllowedScopes": [
           "mofa_identity_admin_api"
         ],
         "AllowedCorsOrigins": [
-          "https://localhost:44302"
+          "https://admin-api.mofa.local"
         ]
       },
       {

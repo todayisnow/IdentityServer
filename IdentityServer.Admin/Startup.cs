@@ -1,19 +1,12 @@
-﻿using System.IdentityModel.Tokens.Jwt;
-using System.Reflection;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using Skoruba.AuditLogging.EntityFramework.Entities;
-using IdentityServer.Admin.Configuration.Database;
+﻿using IdentityServer.Admin.Configuration.Database;
 using IdentityServer.Admin.EntityFramework.Shared.DbContexts;
 using IdentityServer.Admin.EntityFramework.Shared.Entities.Identity;
 using IdentityServer.Admin.Helpers;
-using Skoruba.IdentityServer4.Shared.Configuration.Helpers;
 using IdentityServer.Shared.Dtos;
 using IdentityServer.Shared.Dtos.Identity;
+using Skoruba.AuditLogging.EntityFramework.Entities;
+using Skoruba.IdentityServer4.Shared.Configuration.Helpers;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace IdentityServer.Admin
 {
