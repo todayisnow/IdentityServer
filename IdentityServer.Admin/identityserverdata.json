@@ -72,6 +72,15 @@
         ]
       },
       {
+        "Name": "myOrderApi",
+        "DisplayName": "myOrderApi",
+        "Required": true,
+        "UserClaims": [
+          "role",
+          "name"
+        ]
+      },
+      {
         "Name": "myOrderAPI.read",
         "DisplayName": "My Order API Read"
       },
@@ -164,6 +173,25 @@
         ],
         "AllowedCorsOrigins": [
           "https://admin-api.mofa.local"
+        ]
+      },
+      {
+        "ClientId": "mofa_identity_order_api_swaggerui",
+        "ClientName": "mofa_identity_order_api_swaggerui",
+        "AllowedGrantTypes": [
+          "authorization_code"
+        ],
+        "RequireClientSecret": false,
+        "RequirePkce": true,
+        "RedirectUris": [
+          "https://localhost:5004/swagger/oauth2-redirect.html"
+        ],
+        "AllowedScopes": [
+          "mofa_identity_admin_api",
+          "myOrderApi"
+        ],
+        "AllowedCorsOrigins": [
+          "https://localhost:5004"
         ]
       },
       {
