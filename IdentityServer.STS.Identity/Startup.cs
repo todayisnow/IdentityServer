@@ -1,5 +1,4 @@
-﻿using Elastic.Apm.NetCoreAll;
-using HealthChecks.UI.Client;
+﻿using HealthChecks.UI.Client;
 using IdentityServer.Admin.EntityFramework.Shared.DbContexts;
 using IdentityServer.Admin.EntityFramework.Shared.Entities.Identity;
 using IdentityServer.STS.Identity.Configuration;
@@ -61,7 +60,7 @@ namespace IdentityServer.STS.Identity
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            app.UseAllElasticApm(Configuration);
+
             app.UseCookiePolicy();
 
             if (env.IsDevelopment())
