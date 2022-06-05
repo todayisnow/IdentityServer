@@ -80,15 +80,7 @@
           "name"
         ]
       },
-      {
-        "Name": "myOrderAPI.read",
-        "DisplayName": "My Order API Read"
-      },
-      {
-        "Name": "myOrderApi.write",
-        "DisplayName": "My Order API Write"
-      },
-      
+            
       {
         "Name": "orderAPI",
         "DisplayName": "order API"
@@ -112,17 +104,14 @@
         ]
       },
       {
-        "Name": "myOrderApi",
+        "Name": "orderAPI",
         "DisplayName": "My Order API",
         "Description ": "Allow the application to access Order Api on your behalf",
         "UserClaims": [
           "role"
         ],
         "Scopes": [
-          "myOrderApi.write",
-          "myOrderAPI.read",
-          "orderAPI",
-          "myOrderApi"
+          "orderAPI"
         ]
       }
     ],
@@ -208,7 +197,7 @@
           }
         ],
         "AllowedScopes": [
-          "myOrderAPI.read"
+          "orderAPI"
 
         ]
 
@@ -239,9 +228,6 @@
           "profile",
           "address",
           "email",
-
-          "basketAPI",
-          "catalogAPI",
           "orderAPI",
           "OcelotApiGw",
           "roles"
