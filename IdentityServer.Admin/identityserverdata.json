@@ -83,7 +83,12 @@
             
       {
         "Name": "orderAPI",
-        "DisplayName": "order API"
+        "DisplayName": "order API",
+		"Required": true,
+        "UserClaims": [
+          "role",
+          "name"
+        ]
       },
       {
         "Name": "OcelotApiGw",
@@ -107,9 +112,6 @@
         "Name": "orderAPI",
         "DisplayName": "My Order API",
         "Description ": "Allow the application to access Order Api on your behalf",
-        "UserClaims": [
-          "role"
-        ],
         "Scopes": [
           "orderAPI"
         ]
