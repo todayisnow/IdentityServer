@@ -80,11 +80,20 @@
           "name"
         ]
       },
-            
+
       {
         "Name": "orderAPI",
         "DisplayName": "order API",
-		"Required": true,
+        "Required": true,
+        "UserClaims": [
+          "role",
+          "name"
+        ]
+      },
+      {
+        "Name": "newServiceAPI",
+        "DisplayName": "New Service API",
+        "uired\": true,": null,
         "UserClaims": [
           "role",
           "name"
@@ -109,6 +118,14 @@
         ]
       },
       {
+        "Name": "newServiceAPI",
+        "DisplayName": "My New Service API",
+        "Description ": "Allow the application to access Order Api on your behalf",
+        "Scopes": [
+          "newServiceAPI"
+        ]
+      },
+      {
         "Name": "orderAPI",
         "DisplayName": "My Order API",
         "Description ": "Allow the application to access Order Api on your behalf",
@@ -121,7 +138,7 @@
       {
         "ClientId": "mofa_identity_admin",
         "ClientName": "mofa_identity_admin",
-        "ClientUri": "https://admin.mofa.local",
+        "ClientUri": "https://localhost:44303",
         "AllowedGrantTypes": [
           "authorization_code"
         ],
@@ -132,14 +149,14 @@
           }
         ],
         "RedirectUris": [
-          "https://admin.mofa.local/signin-oidc"
+          "https://localhost:44303/signin-oidc"
         ],
-        "FrontChannelLogoutUri": "https://admin.mofa.local/signout-oidc",
+        "FrontChannelLogoutUri": "https://localhost:44303/signout-oidc",
         "PostLogoutRedirectUris": [
-          "https://admin.mofa.local/signout-callback-oidc"
+          "https://localhost:44303/signout-callback-oidc"
         ],
         "AllowedCorsOrigins": [
-          "https://admin.mofa.local"
+          "https://localhost:44303"
         ],
         "AllowedScopes": [
           "openid",
@@ -179,7 +196,7 @@
         ],
         "AllowedScopes": [
           "mofa_identity_order_api"
-          
+
         ],
         "AllowedCorsOrigins": [
           "https://localhost:5004"
@@ -200,6 +217,25 @@
         ],
         "AllowedScopes": [
           "orderAPI"
+
+        ]
+
+      },
+      {
+        "ClientId": "myNewServiceAPIClient",
+        "ClientName": "New Service Api Client",
+        "AllowedGrantTypes": [
+          "client_credentials"
+        ],
+        "RequirePkce": false,
+        "AllowRememberConsent": false,
+        "ClientSecrets": [
+          {
+            "Value": "secret"
+          }
+        ],
+        "AllowedScopes": [
+          "newServiceAPI"
 
         ]
 

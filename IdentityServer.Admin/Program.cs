@@ -1,20 +1,13 @@
-﻿using System;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Hosting;
-using Serilog;
-using Skoruba.IdentityServer4.Admin.EntityFramework.Configuration.Configuration;
-using IdentityServer.Admin.EntityFramework.Shared.DbContexts;
+﻿using IdentityServer.Admin.EntityFramework.Shared.DbContexts;
 using IdentityServer.Admin.EntityFramework.Shared.Entities.Identity;
 using IdentityServer.Admin.EntityFramework.Shared.Helpers;
+using Serilog;
+using Skoruba.IdentityServer4.Admin.EntityFramework.Configuration.Configuration;
 using Skoruba.IdentityServer4.Shared.Configuration.Helpers;
 
 namespace IdentityServer.Admin
 {
-	public class Program
+    public class Program
     {
         private const string SeedArgs = "/seed";
         private const string MigrateOnlyArgs = "/migrateonly";
@@ -37,7 +30,8 @@ namespace IdentityServer.Admin
                 if (args.Any(x => x == MigrateOnlyArgs))
                 {
                     await host.StopAsync();
-                    if (!migrationComplete) {
+                    if (!migrationComplete)
+                    {
                         Environment.ExitCode = -1;
                     }
 
@@ -133,6 +127,7 @@ namespace IdentityServer.Admin
                 {
                     loggerConfig
                         .ReadFrom.Configuration(hostContext.Configuration)
+                        .WriteTo.Seq("http://localhost:5341")
                         .Enrich.WithProperty("ApplicationName", hostContext.HostingEnvironment.ApplicationName);
                 });
     }

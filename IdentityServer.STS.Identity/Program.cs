@@ -89,14 +89,14 @@ namespace IdentityServer.STS.Identity
                 })
                 .UseSerilog((hostContext, loggerConfig) =>
                 {
-                    var elasticUri = hostContext.Configuration.GetValue<string>("ElasticConfiguration:Uri");
+
                     loggerConfig
                         .ReadFrom.Configuration(hostContext.Configuration)
                         .Enrich.WithProperty("Application", hostContext.HostingEnvironment.ApplicationName)
                         .Enrich.FromLogContext()
                     .Enrich.WithMachineName()
                     .WriteTo.Debug()
-
+                    .WriteTo.Seq("http://localhost:5341")
                     .Enrich.WithProperty("Environment", hostContext.HostingEnvironment.EnvironmentName);
 
                 });

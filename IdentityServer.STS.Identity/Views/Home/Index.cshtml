@@ -3,9 +3,15 @@
 @using IdentityServer.STS.Identity.Configuration.Interfaces
 @inject IViewLocalizer Localizer
 @inject IRootConfiguration RootConfiguration
-<div class="welcome-block px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-    <h1 class="display-4"><img class="img-fluid" width="250px" alt="Logo" src="@UrlHelper.Content(RootConfiguration.AdminConfiguration.HomePageLogoUri)"><br />@RootConfiguration.AdminConfiguration.PageTitle</h1>
-    <p class="lead">@Localizer["SubTitle", RootConfiguration.AdminConfiguration.PageTitle]</p>
+<div class="welcome-block px-3  mx-auto text-center">
+    <h1 class="display-4">
+        <img class="img-fluid"  alt="Logo"
+             src="@UrlHelper.Content("~/images/iam.png")" style="width:20%">
+             <img class="img-fluid" alt="Logo"
+             src="@UrlHelper.Content(RootConfiguration.AdminConfiguration.HomePageLogoUri)"  style="width:40%">
+   
+    </h1>
+    <p class="lead" style="color: #007bff;"> <b>MOFA</b> <b>I</b>dentity and <b>A</b>ccess <b>M</b>anagement (IAM)</p>
 </div>
 
 <div class="card-deck mb-3 text-center">
@@ -47,7 +53,7 @@
             <h1 class="card-title">
                 <span class="oi oi-monitor" title="@Localizer["Discovery"]" aria-hidden="true"></span>
             </h1>
-            <a href="~/.well-known/openid-configuration" class="btn btn-lg btn-block btn-outline-primary">@Localizer["Discovery"]</a>
+            <a href="~/.well-known/openid-configuration" class="btn btn-lg btn-block btn-outline-primary" target="_blank">@Localizer["Discovery"]</a>
         </div>
     </div>
 
