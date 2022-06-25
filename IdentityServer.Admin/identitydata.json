@@ -3,6 +3,9 @@
     "Roles": [
       {
         "Name": "MofaIdentityAdminAdministrator"
+      },
+      {
+        "Name": "OigpAdministrator"
       }
     ],
     "Users": [
@@ -11,7 +14,8 @@
         "Password": "Pa$$word123",
         "Email": "eaboelsaoud@mofa.gov.sa",
         "Roles": [
-          "MofaIdentityAdminAdministrator"
+          "MofaIdentityAdminAdministrator",
+          "OigpAdministrator"
         ],
         "Claims": [
           {

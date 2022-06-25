@@ -63,6 +63,15 @@
     ],
     "ApiScopes": [
       {
+        "Name": "OigpApiScope",
+        "DisplayName": "Organization and International Gathering Platform Api",
+        "Required": true,
+        "UserClaims": [
+          "role",
+          "name"
+        ]
+      },
+      {
         "Name": "mofa_identity_admin_api",
         "DisplayName": "mofa_identity_admin_api",
         "Required": true,
@@ -100,11 +109,17 @@
         ]
       },
       {
-        "Name": "OcelotApiGw",
-        "DisplayName": "Ocelot Api Gw"
+        "Name": "OcelotApiGateway",
+        "DisplayName": "Ocelot Api Gateway"
       }
     ],
     "ApiResources": [
+      {
+        "Name": "OigpApiResources",
+        "Scopes": [
+          "OigpApiScope"
+        ]
+      },
       {
         "Name": "mofa_identity_admin_api",
         "Scopes": [
@@ -136,9 +151,46 @@
     ],
     "Clients": [
       {
+        "ClientId": "OigpApiSwaggeruiClient",
+        "ClientName": "Oigp Api Swagger UI",
+        "AllowedGrantTypes": [
+          "authorization_code"
+        ],
+        "RequireClientSecret": false,
+        "RequirePkce": true,
+        "RedirectUris": [
+          "https://localhost:5001/swagger/oauth2-redirect.html"
+        ],
+        "AllowedScopes": [
+          "OigpApiScope"
+        ],
+        "AllowedCorsOrigins": [
+          "https://localhost:5001"
+        ]
+      },
+      {
+        "ClientId": "OigpAPIClient",
+        "ClientName": "Organization and International Gathering Platform Api Client",
+        "AllowedGrantTypes": [
+          "client_credentials"
+        ],
+        "RequirePkce": false,
+        "AllowRememberConsent": false,
+        "ClientSecrets": [
+          {
+            "Value": "secret"
+          }
+        ],
+        "AllowedScopes": [
+          "OigpApiScope"
+
+        ]
+
+      },
+      {
         "ClientId": "mofa_identity_admin",
         "ClientName": "mofa_identity_admin",
-        "ClientUri": "https://localhost:44303",
+        "ClientUri": "https://admin.mofa.local",
         "AllowedGrantTypes": [
           "authorization_code"
         ],
@@ -149,14 +201,14 @@
           }
         ],
         "RedirectUris": [
-          "https://localhost:44303/signin-oidc"
+          "https://admin.mofa.local/signin-oidc"
         ],
-        "FrontChannelLogoutUri": "https://localhost:44303/signout-oidc",
+        "FrontChannelLogoutUri": "https://admin.mofa.local/signout-oidc",
         "PostLogoutRedirectUris": [
-          "https://localhost:44303/signout-callback-oidc"
+          "https://admin.mofa.local/signout-callback-oidc"
         ],
         "AllowedCorsOrigins": [
-          "https://localhost:44303"
+          "https://admin.mofa.local"
         ],
         "AllowedScopes": [
           "openid",
@@ -241,6 +293,67 @@
 
       },
       {
+        "ClientId": "OigpAngularInternalClient",
+        "ClientName": "Oigp Angular Internal Client",
+        "AllowedGrantTypes": [
+          "Code"
+        ],
+        "RedirectUris": [
+          "https://localhost:8200/signin-callback",
+          "https://localhost:8200/assets/silent-callback.html"
+        ],
+        "RequirePkce": true,
+        "AllowAccessTokensViaBrowser": true,
+        "AllowedScopes": [
+          "openid",
+          "profile",
+          "address",
+          "email",
+          "OigpApiScope",
+          "roles"
+        ],
+        "AllowedCorsOrigins": [
+          "https://localhost:8200"
+        ],
+        "RequireClientSecret": false,
+        "PostLogoutRedirectUris": [
+          "https://localhost:8200/signout-callback"
+        ],
+        "RequireConsent": false,
+        "AccessTokenLifetime": 600
+      },
+      {
+        "ClientId": "OigpAngularExternalClient",
+        "ClientName": "Oigp Angular External Client",
+        "AllowedGrantTypes": [
+          "authorization_code"
+        ],
+        "RedirectUris": [
+          "https://localhost:4200/signin-callback",
+          "https://localhost:4200/assets/silent-callback.html"
+        ],
+        "RequirePkce": true,
+        "AllowAccessTokensViaBrowser": true,
+        "AllowedScopes": [
+          "openid",
+          "profile",
+          "address",
+          "email",
+          "OigpApiScope",
+          "OcelotApiGateway",
+          "roles"
+        ],
+        "AllowedCorsOrigins": [
+          "https://localhost:4200"
+        ],
+        "RequireClientSecret": false,
+        "PostLogoutRedirectUris": [
+          "https://localhost:4200/signout-callback"
+        ],
+        "RequireConsent": false,
+        "AccessTokenLifetime": 600
+      },
+      {
         "ClientId": "aspnetRunBasics_client",
         "ClientName": "AspnetRun Basics Razor App",
         "AllowedGrantTypes": [
@@ -267,7 +380,7 @@
           "address",
           "email",
           "orderAPI",
-          "OcelotApiGw",
+          "OcelotApiGateway",
           "roles"
         ],
         "AllowOfflineAccess": true,
