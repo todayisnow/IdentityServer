@@ -3,7 +3,7 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "https://admin.mofa.local",
+      "applicationUrl": "https://auth-admin.mofa.gov.sa",
       "sslPort": 44303
     }
   },
@@ -22,7 +22,7 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
-      "applicationUrl": "https://admin.mofa.local"
+      "applicationUrl": "https://auth-admin.mofa.gov.sa"
     },
     "Docker (1)": {
       "commandName": "Docker",
