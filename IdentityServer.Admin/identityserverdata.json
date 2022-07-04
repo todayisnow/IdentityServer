@@ -63,36 +63,8 @@
     ],
     "ApiScopes": [
       {
-        "Name": "OigpApiScope",
-        "DisplayName": "Organization and International Gathering Platform Api",
-        "Required": true,
-        "UserClaims": [
-          "role",
-          "name"
-        ]
-      },
-      {
         "Name": "mofa_identity_admin_api",
         "DisplayName": "mofa_identity_admin_api",
-        "Required": true,
-        "UserClaims": [
-          "role",
-          "name"
-        ]
-      },
-      {
-        "Name": "mofa_identity_order_api",
-        "DisplayName": "mofa_identity_order_api",
-        "Required": true,
-        "UserClaims": [
-          "role",
-          "name"
-        ]
-      },
-
-      {
-        "Name": "orderAPI",
-        "DisplayName": "order API",
         "Required": true,
         "UserClaims": [
           "role",
@@ -115,21 +87,9 @@
     ],
     "ApiResources": [
       {
-        "Name": "OigpApiResources",
-        "Scopes": [
-          "OigpApiScope"
-        ]
-      },
-      {
         "Name": "mofa_identity_admin_api",
         "Scopes": [
           "mofa_identity_admin_api"
-        ]
-      },
-      {
-        "Name": "mofa_identity_order_api",
-        "Scopes": [
-          "mofa_identity_order_api"
         ]
       },
       {
@@ -140,54 +100,11 @@
           "takamolApiScope",
           "ocelotApiGatewayScope"
         ]
-      },
-      {
-        "Name": "orderAPI",
-        "DisplayName": "My Order API",
-        "Description ": "Allow the application to access Order Api on your behalf",
-        "Scopes": [
-          "orderAPI"
-        ]
       }
     ],
     "Clients": [
-      {
-        "ClientId": "OigpApiSwaggeruiClient",
-        "ClientName": "Oigp Api Swagger UI",
-        "AllowedGrantTypes": [
-          "authorization_code"
-        ],
-        "RequireClientSecret": false,
-        "RequirePkce": true,
-        "RedirectUris": [
-          "https://localhost:5001/swagger/oauth2-redirect.html"
-        ],
-        "AllowedScopes": [
-          "OigpApiScope"
-        ],
-        "AllowedCorsOrigins": [
-          "https://localhost:5001"
-        ]
-      },
-      {
-        "ClientId": "OigpAPIClient",
-        "ClientName": "Organization and International Gathering Platform Api Client",
-        "AllowedGrantTypes": [
-          "client_credentials"
-        ],
-        "RequirePkce": false,
-        "AllowRememberConsent": false,
-        "ClientSecrets": [
-          {
-            "Value": "secret"
-          }
-        ],
-        "AllowedScopes": [
-          "OigpApiScope"
-
-        ]
-
-      },
+      
+      
       {
         "ClientId": "mofa_identity_admin",
         "ClientName": "mofa_identity_admin",
@@ -236,44 +153,8 @@
           "https://admin-api.mofa.local"
         ]
       },
-      {
-        "ClientId": "mofa_identity_order_api_swaggerui",
-        "ClientName": "mofa_identity_order_api_swaggerui",
-        "AllowedGrantTypes": [
-          "authorization_code"
-        ],
-        "RequireClientSecret": false,
-        "RequirePkce": true,
-        "RedirectUris": [
-          "https://localhost:5004/swagger/oauth2-redirect.html"
-        ],
-        "AllowedScopes": [
-          "mofa_identity_order_api"
-
-        ],
-        "AllowedCorsOrigins": [
-          "https://localhost:5004"
-        ]
-      },
-      {
-        "ClientId": "myOrderAPIClient",
-        "ClientName": "Order Api Client",
-        "AllowedGrantTypes": [
-          "client_credentials"
-        ],
-        "RequirePkce": false,
-        "AllowRememberConsent": false,
-        "ClientSecrets": [
-          {
-            "Value": "secret"
-          }
-        ],
-        "AllowedScopes": [
-          "orderAPI"
-
-        ]
-
-      },
+      
+      
       {
         "ClientId": "takamolApiClient",
         "ClientName": "takamol Api Client",
@@ -293,105 +174,12 @@
 
         ],
         "AllowedCorsOrigins": [
-          "https://takamol.mofa.local"
+          "https://ext-wrappers.mofa.gov.sa"
         ]
 
-      },
-      {
-        "ClientId": "OigpAngularInternalClient",
-        "ClientName": "Oigp Angular Internal Client",
-        "AllowedGrantTypes": [
-          "Code"
-        ],
-        "RedirectUris": [
-          "https://localhost:8200/signin-callback",
-          "https://localhost:8200/assets/silent-callback.html"
-        ],
-        "RequirePkce": true,
-        "AllowAccessTokensViaBrowser": true,
-        "AllowedScopes": [
-          "openid",
-          "profile",
-          "address",
-          "email",
-          "OigpApiScope",
-          "roles"
-        ],
-        "AllowedCorsOrigins": [
-          "https://localhost:8200"
-        ],
-        "RequireClientSecret": false,
-        "PostLogoutRedirectUris": [
-          "https://localhost:8200/signout-callback"
-        ],
-        "RequireConsent": false,
-        "AccessTokenLifetime": 600
-      },
-      {
-        "ClientId": "OigpAngularExternalClient",
-        "ClientName": "Oigp Angular External Client",
-        "AllowedGrantTypes": [
-          "authorization_code"
-        ],
-        "RedirectUris": [
-          "https://localhost:4200/signin-callback",
-          "https://localhost:4200/assets/silent-callback.html"
-        ],
-        "RequirePkce": true,
-        "AllowAccessTokensViaBrowser": true,
-        "AllowedScopes": [
-          "openid",
-          "profile",
-          "address",
-          "email",
-          "OigpApiScope",
-          "OcelotApiGateway",
-          "roles"
-        ],
-        "AllowedCorsOrigins": [
-          "https://localhost:4200"
-        ],
-        "RequireClientSecret": false,
-        "PostLogoutRedirectUris": [
-          "https://localhost:4200/signout-callback"
-        ],
-        "RequireConsent": false,
-        "AccessTokenLifetime": 600
-      },
-      {
-        "ClientId": "aspnetRunBasics_client",
-        "ClientName": "AspnetRun Basics Razor App",
-        "AllowedGrantTypes": [
-          "hybrid"
-        ],
-        "RequirePkce": false,
-        "AllowRememberConsent": false,
-        "RedirectUris": [
-
-          "https://localhost:5006/signin-oidc"
-
-        ],
-        "PostLogoutRedirectUris": [
-          "https://localhost:5006/signout-callback-oidc"
-        ],
-        "ClientSecrets": [
-          {
-            "Value": "secret"
-          }
-        ],
-        "AllowedScopes": [
-          "openid",
-          "profile",
-          "address",
-          "email",
-          "orderAPI",
-          "OcelotApiGateway",
-          "roles"
-        ],
-        "AllowOfflineAccess": true,
-        "AlwaysIncludeUserClaimsInIdToken": true,
-        "UpdateAccessTokenClaimsOnRefresh": true
       }
+      
+      
     ]
   }
 }
