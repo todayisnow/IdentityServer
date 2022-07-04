@@ -100,16 +100,16 @@
         ]
       },
       {
-        "Name": "newServiceAPI",
-        "DisplayName": "New Service API",
-        "uired\": true,": null,
+        "Name": "takamolApiScope",
+        "DisplayName": "Takamol API",
+        "Required": true,
         "UserClaims": [
           "role",
           "name"
         ]
       },
       {
-        "Name": "OcelotApiGateway",
+        "Name": "ocelotApiGatewayScope",
         "DisplayName": "Ocelot Api Gateway"
       }
     ],
@@ -133,11 +133,12 @@
         ]
       },
       {
-        "Name": "newServiceAPI",
-        "DisplayName": "My New Service API",
-        "Description ": "Allow the application to access Order Api on your behalf",
+        "Name": "TakamolApiResource",
+        "DisplayName": "Takamol API Resourse",
+        "Description ": "Allow the application to access Takamol Api on your behalf",
         "Scopes": [
-          "newServiceAPI"
+          "takamolApiScope",
+          "ocelotApiGatewayScope"
         ]
       },
       {
@@ -274,8 +275,8 @@
 
       },
       {
-        "ClientId": "myNewServiceAPIClient",
-        "ClientName": "New Service Api Client",
+        "ClientId": "takamolAPIClient",
+        "ClientName": "takamol Api Client",
         "AllowedGrantTypes": [
           "client_credentials"
         ],
@@ -287,8 +288,12 @@
           }
         ],
         "AllowedScopes": [
-          "newServiceAPI"
+          "takamolApiScope",
+          "ocelotApiGatewayScope"
 
+        ],
+        "AllowedCorsOrigins": [
+          "https://takamol.mofa.local"
         ]
 
       },
