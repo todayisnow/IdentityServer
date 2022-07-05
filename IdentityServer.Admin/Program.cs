@@ -127,7 +127,7 @@ namespace IdentityServer.Admin
                 {
                     loggerConfig
                         .ReadFrom.Configuration(hostContext.Configuration)
-                        .WriteTo.Seq("http://localhost:5341")
+
                         .Enrich.WithProperty("ApplicationName", hostContext.HostingEnvironment.ApplicationName);
                 });
     }

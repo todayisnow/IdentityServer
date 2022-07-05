@@ -96,7 +96,7 @@ namespace IdentityServer.STS.Identity
                         .Enrich.FromLogContext()
                     .Enrich.WithMachineName()
                     .WriteTo.Debug()
-                    .WriteTo.Seq("http://localhost:5341")
+
                     .Enrich.WithProperty("Environment", hostContext.HostingEnvironment.EnvironmentName);
 
                 });

@@ -17,17 +17,21 @@
                     "rollingInterval": "Day"
                 }
             },
-            {
-                "Name": "MSSqlServer",
-                "Args": {
-                    "connectionString": "Server=localhost;Database=AuthDb;User Id=sa;Password=1234;",
-                    "tableName": "Log",
-                    "columnOptionsSection": {
-                        "addStandardColumns": [ "LogEvent" ],
-                        "removeStandardColumns": [ "Properties" ]
-                    }
-                }
+          {
+            "Name": "MSSqlServer",
+            "Args": {
+              "connectionString": "Server=localhost;Database=AuthDb;User Id=sa;Password=1234;",
+              "tableName": "Log",
+              "columnOptionsSection": {
+                "addStandardColumns": [ "LogEvent" ],
+                "removeStandardColumns": [ "Properties" ]
+              }
             }
+          },
+          {
+            "Name": "Seq",
+            "Args": { "serverUrl": "http://localhost:5341/" }
+          }
         ]
     }
 }

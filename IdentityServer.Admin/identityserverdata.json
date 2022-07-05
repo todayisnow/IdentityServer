@@ -93,7 +93,7 @@
         ]
       },
       {
-        "Name": "TakamolApiResource",
+        "Name": "takamolApiResource",
         "DisplayName": "Takamol API Resourse",
         "Description ": "Allow the application to access Takamol Api on your behalf",
         "Scopes": [
